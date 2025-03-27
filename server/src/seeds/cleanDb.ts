@@ -3,7 +3,13 @@ import db from '../config/connection.js';
 
 export default async (modelName: "Question", collectionName: string) => {
   try {
-    let modelExists = await models[modelName].db.db.listCollections({
+    let modelExists = await models[modelName]
+    if (!modelExists) return;
+    let a = modelExists.db
+    if (!a) return;      
+    let b = a.db;
+    if (!b) return;
+    b.listCollections({
       name: collectionName
     }).toArray()
 
